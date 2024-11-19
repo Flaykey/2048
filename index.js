@@ -6,10 +6,18 @@ let board = [
 ];
 const HtmlBoard = document.getElementById("board");
 function randomPlace(){
-    let x,y;
+    let x,y, c = 0;
     x = Math.floor(Math.random() * 4);
     y = Math.floor(Math.random() * 4);
-    while(board[x][y] != 0 ){
+    for (let i = 0; i < 4; i++) {
+        for (let j = 0; j < 4; j++) {
+                if(board[i][j] == 0) c++;
+        }
+    }
+    if(c == 0){
+        return;
+    }
+    while(board[x][y] != 0 && c!= 0){
     x = Math.floor(Math.random() * 4);
     y = Math.floor(Math.random() * 4);
     }
@@ -94,6 +102,9 @@ document.addEventListener("keydown", game);
 
 function game(event) {
     // let temp = board;
+    // if((event.key != "ArrowLeft") || (event.key != "ArrowRight") || (event.key != "ArrowUp" )|| (event.key != "ArrowDown")){
+    //     return;
+    // }
     switch (event.key) {
         case "ArrowLeft":
             // alert("left");
@@ -180,7 +191,8 @@ function game(event) {
             }
             break;
         default:
-            break; // Handle other keys if needed
+            return;
+            //break; // Handle other keys if needed
     }
     // console.log(temp);
     // console.log(board);
