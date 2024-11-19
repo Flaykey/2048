@@ -11,6 +11,30 @@ html ,body{
     background-color: white;
 }
 
+.container{
+    width: 35vw;
+    height: 10vh;
+    /* background-color: red; */
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#new{
+    width: 10vw;
+    height: 7vh;
+    margin-top: 2vh;
+    border-style: none;
+    border-radius: 10px;
+    background-color: rgb(14, 129, 201);
+    font-size: 16px;
+    font-family: sans-serif;
+}
+
+#new:hover{
+    color:rgb(14, 129, 201) ;
+    background-color: whitesmoke;
+}
+
 .tittle{
     font-family: sans-serif;
     font-size: 50px;

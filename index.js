@@ -5,8 +5,10 @@ let board = [
     [0, 0, 0, 0]
 ];
 const HtmlBoard = document.getElementById("board");
+const newGameBTN = document.getElementById("new");
 function randomPlace(){
     let x,y, c = 0;
+    let prob = Math.floor(Math.random() * 3)
     x = Math.floor(Math.random() * 4);
     y = Math.floor(Math.random() * 4);
     for (let i = 0; i < 4; i++) {
@@ -21,9 +23,10 @@ function randomPlace(){
     x = Math.floor(Math.random() * 4);
     y = Math.floor(Math.random() * 4);
     }
-    board[x][y] = 2;
-
+    if(prob <= 1) board[x][y] = 2;
+    else  board[x][y] = 4;
 }
+
 randomPlace();
 randomPlace();
 function Board(){
@@ -94,6 +97,17 @@ for (let i = 0; i < 4; i++) {
         HtmlBoard.appendChild(cell);
     }
 }
+}
+newGameBTN.onclick = function(){
+    board = [
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0]
+    ];
+    randomPlace();
+    randomPlace();
+    Board();
 }
 Board();
 
