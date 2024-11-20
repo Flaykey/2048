@@ -4,6 +4,51 @@ let board = [
     [0, 0, 0, 0],
     [0, 0, 0, 0]
 ];
+const tileColors = [
+    "#cdc1b4", // Default for 0 or undefined
+    "#eee4da", // 2
+    "#ede0c8", // 4
+    "#f2b179", // 8
+    "#f59563", // 16
+    "#f67c5f", // 32
+    "#f65e3b", // 64
+    "#edcf72", // 128
+    "#edcc61", // 256
+    "#edc850", // 512
+    "#edc53f", // 1024
+    "#edc22e", // 2048
+    "#3c3a33", // 4096
+    "#605c58", // 8192
+    "#786f67", // 16384
+    "#8b7e75", // 32768
+    "#9c8c83"  // 65536
+];
+
+const textColors = [
+    "#776e65", // Default for 0 or undefined
+    "#776e65", // 2
+    "#776e65", // 4
+    "#f9f6f2", // 8
+    "#f9f6f2", // 16
+    "#f9f6f2", // 32
+    "#f9f6f2", // 64
+    "#f9f6f2", // 128
+    "#f9f6f2", // 256
+    "#f9f6f2", // 512
+    "#f9f6f2", // 1024
+    "#f9f6f2", // 2048
+    "#f9f6f2", // 4096
+    "#f9f6f2", // 8192
+    "#f9f6f2", // 16384
+    "#f9f6f2", // 32768
+    "#f9f6f2"  // 65536
+];
+  
+
+function getBaseLog(x, y) {
+    return Math.log(y) / Math.log(x);
+  }
+
 const HtmlBoard = document.getElementById("board");
 const newGameBTN = document.getElementById("new");
 function randomPlace(){
@@ -23,8 +68,9 @@ function randomPlace(){
     x = Math.floor(Math.random() * 4);
     y = Math.floor(Math.random() * 4);
     }
-    if(prob <= 1) board[x][y] = 2;
-    else  board[x][y] = 4;
+    // if(prob <= 1)/ 
+    board[x][y] = 2;
+    // else  board[x][y] = 4;
 }
 
 randomPlace();
@@ -37,59 +83,16 @@ for (let i = 0; i < 4; i++) {
         cell.classList.add("cell");
         cell.style.width = "7vw";
         cell.style.height = "14vh";
-        switch(board[i][j]){
-            case 0:
-                cell.style.backgroundColor = "gray";
-                break;
-            case 2:
-                cell.style.backgroundColor = "lightyellow";
-                break;
-            case 4:
-                cell.style.backgroundColor = "yellow";            
-                break;
-            case 8:
-                cell.style.backgroundColor = "lightorange";
-                break;
-            case 16:
-                cell.style.backgroundColor = "orange";
-                break;
-            case 32:
-                cell.style.backgroundColor = "lightred";
-                break;
-            case 64:
-                cell.style.backgroundColor = "red";           
-                break; 
-            case 128:
-                cell.style.backgroundColor = "darkred"; 
-                break;  
-            case 256:
-                cell.style.backgroundColor = "lightgreen";
-                break;
-            case 512:
-                cell.style.backgroundColor = "lime"; 
-                break;           
-            case 1024:
-                cell.style.backgroundColor = "green";
-                break;
-            case 2048:
-                cell.style.backgroundColor = "darkgreen";
-                break;
-            case 4096:
-                cell.style.backgroundColor = "lightpurple";
-                break;          
-            case 8192:
-                cell.style.backgroundColor = "purple";
-                break;  
-            case 16384:
-                cell.style.backgroundColor = "pink";
-                break;
-            case 32768:
-                cell.style.backgroundColor = "blue";
-                break;           
-            case 65536:
-                cell.style.backgroundColor = "gray";  
-                break;             
+        if (board[i][j] != 0){
+            cell.style.backgroundColor = tileColors[(getBaseLog(2, board[i][j]))];
+            cell.style.color = textColors[(getBaseLog(2, board[i][j]))];
+        
         }
+        else {
+            cell.style.backgroundColor = tileColors[0];
+            cell.style.color = textColors[0];
+        }
+        console.log(getBaseLog(2,board[i][j]));
         if(board[i][j] != 0){ cell.innerHTML = board[i][j].toString();
             console.log("no zero")
         }
