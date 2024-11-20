@@ -68,9 +68,9 @@ function randomPlace(){
     x = Math.floor(Math.random() * 4);
     y = Math.floor(Math.random() * 4);
     }
-    // if(prob <= 1)/ 
+     if(prob <= 1)
     board[x][y] = 2;
-    // else  board[x][y] = 4;
+    else  board[x][y] = 4;
 }
 
 randomPlace();
